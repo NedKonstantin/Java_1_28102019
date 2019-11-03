@@ -16,7 +16,41 @@ package ru.nedovesov.konstantin.java_1;
 */
 public class HomeWorkOne {
     public static void main(String[] args){
-		
-	}
+        System.out.println(arithmeticMethod(82, 33, 54, 65));
+        System.out.println(checkAmount(1, 9));
+        negativeOrPositive(5);
+        System.out.println(helloMethod("Константин"));
+        checkYear(2016);
+    }
+
+    public static float arithmeticMethod(int a, int b, int c, int d){
+        return a * (b + (c * 1f / d));
+    }
+
+    public static boolean checkAmount(int a, int b){
+        return a + b >= 10 && a + b <= 20;
+    }
+
+    public static void negativeOrPositive(int a){
+        if(a < 0){
+            System.out.println("Число отрицательное");
+        } else {
+            System.out.println("Число положительное");
+        }
+    }
+
+    public static String helloMethod(String name){
+        return "Привет, " + name + "!";
+    }
+
+    public static void checkYear(int year){
+        if(year % 400 == 0) {
+            System.out.println("Год високосный");
+        } else if (year % 100 == 0 || year != 0) {
+            System.out.println("Год не високосный");
+        } else if (year % 4 == 0) {
+            System.out.println("Год високосный");
+        }
+    }
 }
 
