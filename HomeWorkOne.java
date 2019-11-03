@@ -18,22 +18,16 @@ public class HomeWorkOne {
         System.out.println(arithmeticMethod(82, 33, 54, 65));
         System.out.println(checkAmount(1, 9));
         negativeOrPositive(5);
-        helloMethod("Константин");
+        System.out.println(helloMethod("Константин"));
         checkYear(2016);
     }
 
     public static float arithmeticMethod(int a, int b, int c, int d){
-        float aA = a;
-        float bB = b;
-        float cC = c;
-        float dD = d;
-        return aA * (bB + (cC / dD));
+        return a * (b + (c * 1f / d));
     }
 
     public static boolean checkAmount(int a, int b){
-        if (a + b >= 10 && a + b <= 20){
-            return true;
-        } else return false;
+        return a + b >= 10 && a + b <= 20;
     }
 
     public static void negativeOrPositive(int a){
@@ -44,19 +38,17 @@ public class HomeWorkOne {
         }
     }
 
-    public static void helloMethod(String name){
-        System.out.println("Привет, " + name + "!");
+    public static String helloMethod(String name){
+        return "Привет, " + name + "!";
     }
 
     public static void checkYear(int year){
         if(year % 400 == 0) {
             System.out.println("Год високосный");
-        } else if (year % 100 == 0) {
+        } else if (year % 100 == 0 || year != 0) {
             System.out.println("Год не високосный");
         } else if (year % 4 == 0) {
             System.out.println("Год високосный");
-        } else {
-            System.out.println("Год не високосный");
         }
     }
 }
