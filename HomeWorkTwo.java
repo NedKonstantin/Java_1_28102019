@@ -60,9 +60,8 @@ public class HomeWorkTwo {
 
 // Задание 2
     private static void fillArray(int[] array) {
-        array[0] = 1;
-        for (int i = 1; i < array.length; i++) {
-            array[i] = array[i-1] + 3;
+         for (int i = 0, j = 1; i < array.length; i++, j+=3) {
+            array[i] = j;
         }
     }
 
