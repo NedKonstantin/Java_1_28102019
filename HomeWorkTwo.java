@@ -11,8 +11,8 @@ package ru.nedovesov.konstantin.java_1;
 *   заполнить его диагональные элементы единицами, используя цикл(ы);
 * 6 ** Написать метод, в который передается не пустой одномерный целочисленный массив,
 *   метод должен вернуть true если в массиве есть место, в котором сумма левой и правой части массива равны.
-*   Примеры: checkBalance([1, 1, 1, || 2, 1]) > true, checkBalance ([2, 1, 1, 2, 1]) > false,
-*   checkBalance ([10, || 1, 2, 3, 4]) > true. Абстрактная граница показана символами ||, эти символы в массив не входят.
+*   Примеры: checkBalance([1, 1, 1, || 2, 1]) → true, checkBalance ([2, 1, 1, 2, 1]) → false,
+*   checkBalance ([10, || 1, 2, 3, 4]) → true. Абстрактная граница показана символами ||, эти символы в массив не входят.
 * 7 *** Написать метод, которому на вход подаётся одномерный массив и число n
 *   (может быть положительным, или отрицательным), при этом метод должен циклически сместить
 *   все элементы массива на n позиций.
@@ -23,33 +23,31 @@ import java.util.Arrays;
 
 public class HomeWorkTwo {
     public static void main(String[] args) {
-        int[] arr = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
-        changeElementsArrays(arr);
-        System.out.println(Arrays.toString(arr));
-        int[] arr2 = new int[8];
-        fillArray(arr2);
-        System.out.println(Arrays.toString(arr2));
-        int[] arr3 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        multipleElementsArrays(arr3);
-        System.out.println(Arrays.toString(arr3));
-        int[] arr4 = {12, 5, 45, 21, 18, 32, 52, 26, 41, 50};
-        System.out.println("Максимальное значение массива: " + maximumElement(arr4));
-        System.out.println("Минимальное значение массива: " + minimumElement(arr4));
-        int[][] arr5 = new int[15][15];
+//        int[] arr = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+//        changeElementsArrays(arr);
+//        System.out.println(Arrays.toString(arr));
+//        int[] arr2 = new int[8];
+//        fillArray(arr2);
+//        System.out.println(Arrays.toString(arr2));
+//        int[] arr3 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+//        multipleElementsArrays(arr3);
+//        System.out.println(Arrays.toString(arr3));
+//        int[] arr4 = {12, 5, 45, 21, 18, 32, 52, 26, 41, 50};
+//        System.out.println("Максимальное значение массива: " + maximumElement(arr4));
+//        System.out.println("Минимальное значение массива: " + minimumElement(arr4));
+        int[][] arr5 = new int[5][5];
         fillDiagonal(arr5);
         printArrayToConsole(arr5);
-        int[] arr6 = {1, 1, 2, 4, 3, 2, 3};
-        int[] arr7 = {2, 3, 2, 5, 6, 2, 1};
-        System.out.println("Массив имеет баланс: " + checkBalance(arr6));
-        System.out.println("Массив имеет баланс: " + checkBalance(arr7));
-        System.out.println("Массив имеет баланс: " + checkBalanceVariantTwo(arr6));
-        System.out.println("Массив имеет баланс: " + checkBalanceVariantTwo(arr7));
-        int[] arr8 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        System.out.println(Arrays.toString(arr8));
-        changeArray(arr8, 3);
-        System.out.println(Arrays.toString(arr8));
-        changeArray(arr8, - 3);
-        System.out.println(Arrays.toString(arr8));
+//        int[] arr6 = {1, 1, 2, 4, 3, 2, 3};
+//        int[] arr7 = {2, 3, 2, 5, 6, 2, 1};
+//        System.out.println("Массив имеет баланс: " + checkBalance(arr6));
+//        System.out.println("Массив имеет баланс: " + checkBalance(arr7));
+//        int[] arr8 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//        System.out.println(Arrays.toString(arr8));
+//        changeArray(arr8, 3);
+//        System.out.println(Arrays.toString(arr8));
+//        changeArray(arr8, - 3);
+//        System.out.println(Arrays.toString(arr8));
     }
 // Задание 1
     private static void changeElementsArrays(int[] array) {
@@ -60,8 +58,8 @@ public class HomeWorkTwo {
 
 // Задание 2
     private static void fillArray(int[] array) {
-         for (int i = 0, j = 1; i < array.length; i++, j+=3) {
-            array[i] = j;
+         for (int i = 0; i < array.length; i++) {
+            array[i] = i * 3 + 1;
         }
     }
 
@@ -90,14 +88,11 @@ public class HomeWorkTwo {
 
 // Задание 5
     private static void fillDiagonal(int[][] array) {
-        for (int i = 0, j = 0; i < array.length; i++, j++) {
-            array[i][j] = 1;
-        }
-        for (int i = 0, j = array.length - 1; j >= 0; i++, j--) {
-            array[i][j] = 1;
+        for (int i = 0; i < array.length; i++) {
+            array[i][i] = 1;
+            array[i][array.length - 1 - i] = 1;
         }
     }
-// Написан, чтобы понять правильно ли работает...
     private static void printArrayToConsole(int[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
@@ -108,16 +103,7 @@ public class HomeWorkTwo {
     }
 
 // Задание 6
-// Просто проверка наличия баланса
-    private static boolean checkBalance(int[] array) {
-        int sum = 0;
-        for (int i = 0; i < array.length; i++) {
-            sum += array[i];
-        }
-        return (sum % 2 == 0) ? true : false;
-    }
-// Можно доработать, чтобы узнать где именно находится баланс
-    private static boolean checkBalanceVariantTwo (int[] arr) {
+    public static boolean checkBalance (int[] arr) {
         int sumRight = 0;
         int sumLeft = 0;
         for (int i = 0; i < arr.length-1; i++) {
