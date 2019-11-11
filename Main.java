@@ -46,7 +46,7 @@ public class Main {
 //        int birthYear;
         for (int j = 0; j < array.length; j++) {
             System.out.print("Введите ФИО ");
-            String name = scanner.nextLine();
+            String name = scanner.nextLine(); // В консоли почему-то не запрашивается ввод этой строки... 
             System.out.println("Введите должность ");
             String position = scanner.nextLine();
             System.out.println("Введите номер телефона ");
