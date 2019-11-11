@@ -19,9 +19,9 @@ public class Main {
         Employee[] employeesArray = new Employee[sizeArray()];
         fillArray(employeesArray);
         for (int j = 0; j < employeesArray.length; j++) {
-            System.out.println(employeesArray[j].getId() + "s " + employeesArray[j].getName() + "ss "
-                                + employeesArray[j].getPosition() + "sss " + employeesArray[j].getPhoneNumber() + "SSSS"
-                                + employeesArray[j].getSalary() + "sssss " + employeesArray[j].getAge());
+            System.out.println(employeesArray[j].getId() + " " + employeesArray[j].getName() + " "
+                                + employeesArray[j].getPosition() + " " + employeesArray[j].getPhoneNumber() + " "
+                                + employeesArray[j].getSalary() + " " + employeesArray[j].getAge());
         }
         for (int i = 0; i < employeesArray.length; i++) {
             if (employeesArray[i].getAge() > 45)
