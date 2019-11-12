@@ -35,18 +35,14 @@ public class Main {
     private static int sizeArray (){
         System.out.println("Установите количество сотрудников в массиве: ");
         int size = scanner.nextInt();
+		scanner.nextLine();
         return size;
     }
 
     private static void fillArray(Employee[] array) {
-//        String name;
-//        String position;
-//        String phoneNumber;
-//        int salary;
-//        int birthYear;
         for (int j = 0; j < array.length; j++) {
             System.out.print("Введите ФИО ");
-            String name = scanner.nextLine(); // В консоли почему-то не запрашивается ввод этой строки... 
+            String name = scanner.nextLine(); 
             System.out.println("Введите должность ");
             String position = scanner.nextLine();
             System.out.println("Введите номер телефона ");
@@ -56,7 +52,7 @@ public class Main {
             System.out.println("Введите год рождения ");
             int birthYear = scanner.nextInt();
             array[j] = new Employee(name, position, phoneNumber, salary, birthYear);
+			scanner.nextLine();
         }
-//        scanner.close();
     }
 }
