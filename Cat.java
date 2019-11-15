@@ -6,7 +6,7 @@ public class Cat extends Animal {
     }
 
     @Override
-    protected String swimming (float swim){
-        return this.getType() + " " + this.getName() + " can't swim";
+    protected boolean swimming (float swim){
+        return false;
     }
 }

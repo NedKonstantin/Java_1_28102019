@@ -37,18 +37,15 @@ public abstract class Animal {
         return swim;
     }
 
-    protected String running(float run){
-        String formatRun = String.format("%.1f", run);
-        return type + " " + name + " running on " + formatRun + " m";
+    protected boolean running(float run){
+        return run <= this.run;
     }
 
-    protected String jumping(float jump){
-        String formatJump = String.format("%.1f", jump);
-        return type + " " + name + " jumping on " + formatJump + " m";
+    protected boolean jumping(float jump){
+        return jump <= this.jump;
     }
 
-    protected String swimming(float swim){
-        String formatSwim = String.format("%.1f", swim);
-        return type + " " + name + " swimming on " + formatSwim + " m";
+    protected boolean swimming(float swim){
+        return swim <= this.swim;
     }
 }
