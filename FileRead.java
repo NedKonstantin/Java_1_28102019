@@ -28,26 +28,7 @@ public class FileRead {
         for (int i = 0; i < files.length; i++) {
             if (files[i].isFile()) {
                 try {
-                    FileInputStream fis = new FileInputStream(files[i].getAbsolutePath());
-                    StringBuilder temp = new StringBuilder();
-                    int n = 0;
-                    while ((n = fis.read()) != -1) {
-                        temp.append((char) n);
-                    }
-                    fis.close();
-                    String tempString = temp.toString();
-                    for (int j = 0; j < tempString.getBytes().length; j++) {
-                        if (tempString.getBytes()[j] == searchWord.getBytes()[0]) {
-                            for (int k = 1; k < searchWord.getBytes().length || j < tempString.getBytes().length; k++) {
-                                if (searchWord.getBytes()[k] != tempString.getBytes()[j + k]) {
-                                    break;
-                                }
-                                if (k == searchWord.getBytes().length - 1) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+                    if (wordSearch(files[i], searchWord)) return true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -57,28 +38,45 @@ public class FileRead {
         return false;
     }
 
-    private static boolean wordSearch(String fileName, String searchWord) {
+    private static boolean wordSearch(File file, String searchWord) throws IOException {
         try {
-            FileInputStream fis = new FileInputStream(fileName);
-            StringBuilder temp = new StringBuilder();
+            FileInputStream fis = new FileInputStream(file.getAbsolutePath());
             int i = 0;
-            while ((i = fis.read()) != -1){
-                temp.append((char)i);
-            }
-            fis.close();
-            String tempString = temp.toString();
-            for (int j = 0; j < tempString.getBytes().length; j++) {
-                if (tempString.getBytes()[j] == searchWord.getBytes()[0]){
-                    for (int k = 1; k < searchWord.getBytes().length || j < tempString.getBytes().length; k++) {
-                        if(searchWord.getBytes()[k] != tempString.getBytes()[j + k]){
-                            break;
-                        }
-                        if(k == searchWord.getBytes().length - 1){
-                            return true;
-                        }
+            while ((i = fis.read()) != -1) {
+                for (int j = 0; j < searchWord.getBytes().length; j++) {
+                    if (i != searchWord.getBytes()[j]) {
+                        break;
+                    } else {
+                        i = fis.read();
+                    }
+                    if (j == searchWord.getBytes().length - 1) {
+                        return true;
                     }
                 }
             }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+            return false;
+    }
+
+    private static boolean wordSearch(String fileName, String searchWord) {
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            int i = 0;
+            while ((i = fis.read()) != -1){
+                for (int j = 0; j < searchWord.getBytes().length; j++) {
+                    if (i != searchWord.getBytes()[j]){
+                        break;
+                    } else {
+                        i = fis.read();
+                    }
+                    if (j == searchWord.getBytes().length - 1){
+                        return true;
+                    }
+                }
+            }
+            fis.close();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -89,19 +87,15 @@ public class FileRead {
         StringBuilder tempMsg = new StringBuilder();
         try {
             FileInputStream fis = new FileInputStream(nameFile2);
+            FileOutputStream fos = new FileOutputStream(nameFile1, true);
             int i = 0;
             while ((i = fis.read()) != -1){
-                tempMsg.append((char)i);
+                fos.write(i);
             }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        try {
-            FileOutputStream fos = new FileOutputStream(nameFile1, true);
-            fos.write(tempMsg.toString().getBytes());
+            fis.close();
             fos.close();
         } catch (IOException e){
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 
